@@ -1,0 +1,42 @@
+# Tomcat
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 8080
+  servlet:
+    context-path: /
+
+# 系统自定义全局配置，可根据实际需要扩展使用
+global:
+# upload-location: /data/upload/ #文件上传目录
+# upload-mapping: /upload/ #文件上传目录访问路径
+  redis-session-dao: false #是否使用使用redis会话管理器，true为开启，false为关闭
+  kaptcha-enable: true #是否开启验证码，true为开启，false为关闭
+
+# jwt配置
+jwt:
+  secret: dp  #jwt密钥
+  expiration: 604800  #过期时间,秒
+
+spring:
+  # 环境 sit:集成测试环境|pre:预生产环境|prd:生产环境
+  profiles:
+    active: sit
+  mvc:
+    static-path-pattern: /static/**
+  # jackson时间格式化
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+
+# Mybatis配置
+mybatis:
+  configLocation: classpath:mybatis.xml
+  mapper-locations: classpath*:com/jubao/**/mapper/*.xml

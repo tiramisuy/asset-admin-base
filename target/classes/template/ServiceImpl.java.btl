@@ -1,0 +1,83 @@
+package ${package}.modules.${module}.service.impl;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.jubao.common.entity.Page;
+import com.jubao.common.entity.Query;
+import com.jubao.common.entity.R;
+import com.jubao.common.utils.CommonUtils;
+import ${package}.modules.${module}.entity.${className}Entity;
+import ${package}.modules.${module}.dao.${className}Mapper;
+import ${package}.modules.${module}.service.${className}Service;
+
+/**
+ * ${comments}
+ * @author ${author}<${email}>
+ */
+@Service("${objName}Service")
+public class ${className}ServiceImpl implements ${className}Service {
+
+	@Autowired
+    private ${className}Mapper ${objName}Mapper;
+
+    /**
+     * 分页查询
+     * @param params
+     * @return
+     */
+	@Override
+	public Page<${className}Entity> list${className}(Map<String, Object> params) {
+		Query query = new Query(params);
+		Page<${className}Entity> page = new Page<>(query);
+		${objName}Mapper.listForPage(page, query);
+		return page;
+	}
+
+    /**
+     * 新增
+     * @param ${objName}
+     * @return
+     */
+	@Override
+	public R save${className}(${className}Entity ${objName}) {
+		int count = ${objName}Mapper.save(${objName});
+		return CommonUtils.msg(count);
+	}
+
+    /**
+     * 根据id查询
+     * @param id
+     * @return
+     */
+	@Override
+	public R get${className}ById(Long id) {
+		${className}Entity ${objName} = ${objName}Mapper.getObjectById(id);
+		return CommonUtils.msg(${objName});
+	}
+
+    /**
+     * 修改
+     * @param ${objName}
+     * @return
+     */
+	@Override
+	public R update${className}(${className}Entity ${objName}) {
+		int count = ${objName}Mapper.update(${objName});
+		return CommonUtils.msg(count);
+	}
+
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
+	@Override
+	public R batchRemove(Long[] id) {
+		int count = ${objName}Mapper.batchRemove(id);
+		return CommonUtils.msg(id, count);
+	}
+
+}

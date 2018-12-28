@@ -1,0 +1,38 @@
+@layout("../../system/layout.html", {title: "新增-定时任务"}){
+<table class="form" id="form">
+    <tr>
+        <td class="formTitle">类名<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="spring bean 名称" v-model="job.beanName" isvalid="yes"
+                   checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">方法名<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="方法名" v-model="job.methodName" isvalid="yes"
+                   checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">参数</td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="参数" v-model="job.params">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">cron表达式<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="例：0/3 * * * * ?" v-model="job.cronExpression"
+                   isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle formTitle-top">备注</td>
+        <td class="formValue">
+            <textarea class="form-control" rows="4" placeholder="备注" v-model="job.remark"></textarea>
+        </td>
+    </tr>
+</table>
+<script src="${ctxPath}/static/js/base/quartz/add.js"></script>
+@}

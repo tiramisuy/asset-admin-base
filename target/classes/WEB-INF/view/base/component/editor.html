@@ -1,0 +1,84 @@
+@layout("../../system/layout.html", {title: "富文本编辑器"}){
+<div class="panel panel-default" style="padding-bottom: 10px;margin-top:10px;">
+    <div class="panel-heading">wangEditor示例</div>
+    <div>
+        <h3>&nbsp;&nbsp;&nbsp;官方文档</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <a href="https://www.kancloud.cn/wangfupeng/wangeditor3/332599" target="_blank">https://www.kancloud.cn/wangfupeng/wangeditor3/332599</a>
+            </div>
+        </div>
+        <h3>&nbsp;&nbsp;&nbsp;基础示例</h3>
+        <div class="row">
+            <div class="col-md-12" id="editor"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <h3>富文本</h3>
+            </div>
+            <div class="col-md-5">
+                <textarea v-model="htmlResult" rows="8" class="form-control"></textarea>
+            </div>
+            <div class="col-md-1">
+                <h3>纯文本</h3>
+            </div>
+            <div class="col-md-5">
+                <textarea v-model="textResult" rows="8" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="btn-group">
+                    <a class="btn btn-default" \@click="setContent">设置内容</a>
+                    <a class="btn btn-default" \@click="getContent">获取内容</a>
+                    <a class="btn btn-default" \@click="appendContent">追加内容</a>
+                    <a class="btn btn-default" \@click="getText">获取纯文本</a>
+                    <a class="btn btn-default" \@click="clearContent">清空内容</a>
+                    <a class="btn btn-default" \@click="checkEmpty">校验是否为空</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#dpLTE',
+        data: {
+            htmlResult: '',
+            textResult: ''
+        },
+        methods: {
+            setContent: function () {
+                editorUtils.set(editor, '<p>用js设置的内容</p>');
+            },
+            getContent: function () {
+                this.htmlResult = editorUtils.get(editor);
+            },
+            appendContent: function () {
+                editorUtils.append(editor, '<p>用js追加的内容</p>');
+            },
+            getText: function () {
+                this.textResult = editorUtils.text(editor);
+            },
+            clearContent: function () {
+                editorUtils.clear(editor);
+            },
+            checkEmpty: function () {
+                if (editorUtils.hasContents(editor)) {
+                    dialogToastr('内容不为空');
+                } else {
+                    dialogToastr('内容为空');
+                }
+            }
+        }
+    });
+
+    var editor = editorUtils.init({
+        change: function (html) {
+            vm.getContent();
+            vm.getText();
+        }
+    });
+
+</script>
+@}

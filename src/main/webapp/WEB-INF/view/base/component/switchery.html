@@ -1,0 +1,91 @@
+@layout("../../system/layout.html", {title: "switchery组件"}){
+<div class="panel panel-default" style="padding-bottom: 10px;margin-top:10px;">
+    <div class="panel-heading">switchery示例</div>
+    <div>
+        <h3>&nbsp;&nbsp;&nbsp;官方文档</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <a href="http://abpetkov.github.io/switchery/" target="_blank">http://abpetkov.github.io/switchery/</a>
+            </div>
+        </div>
+        <h3>&nbsp;&nbsp;&nbsp;基础示例</h3>
+        <div class="row">
+            <div class="col-md-2">
+                <input type="checkbox" class="switcheryDemo js-switch" checked>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="btn-group">
+                    <a class="btn btn-default" \@click="switchOn">设置：开</a>
+                    <a class="btn btn-default" \@click="switchOff">设置：关</a>
+                    <a class="btn btn-default" \@click="switchDisabled">禁用</a>
+                    <a class="btn btn-default" \@click="switchEnabled">启用</a>
+                    <a class="btn btn-default" \@click="getState">获取状态</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                选择状态：【{{singleState}}】
+            </div>
+        </div>
+        <h3>&nbsp;&nbsp;&nbsp;多个开关</h3>
+        <div class="row">
+            <div class="col-md-2">
+                <input type="checkbox" class="switcheryGroup js-switch" data-id="1">
+                <input type="checkbox" class="switcheryGroup js-switch" data-id="2">
+                <input type="checkbox" class="switcheryGroup js-switch" data-id="3">
+                <input type="checkbox" class="switcheryGroup js-switch" data-id="4">
+                <input type="checkbox" class="switcheryGroup js-switch" data-id="5">
+                <input type="checkbox" class="switcheryGroup js-switch" data-id="6">
+            </div>
+            <div class="col-md-10">
+                当前选择id为：【{{idx}}】，选择状态：【{{state}}】
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#dpLTE',
+        data: {
+            singleState: '',
+            idx: '',
+            state: ''
+        },
+        methods: {
+            switchOn: function () {
+                switchUtils.on(switcheryDemo);
+            },
+            switchOff: function () {
+                switchUtils.off(switcheryDemo);
+            },
+            switchDisabled: function () {
+                switchUtils.disable(switcheryDemo);
+            },
+            switchEnabled: function () {
+                switchUtils.enable(switcheryDemo);
+            },
+            getState: function () {
+                vm.singleState = switchUtils.checked(switcheryDemo);
+            }
+        }
+    });
+
+    var switcheryDemo = switchUtils.init({
+        selector: '.switcheryDemo',
+        change: function (switchContainer) {
+            vm.singleState = switchUtils.checked(switchContainer);
+        }
+    });
+
+    switchUtils.init({
+        selector: '.switcheryGroup',
+        single: false,
+        change: function (switchContainer) {
+            vm.state = switchUtils.checked(switchContainer);
+            vm.idx = switchUtils.data(switchContainer, "id");
+        }
+    });
+
+</script>
+@}

@@ -1,0 +1,63 @@
+@layout("../../system/layout.html", {title: "新增-行政区域"}){
+<table class="form" id="form">
+    <tr>
+        <td class="formTitle">区域代码<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="区域代码" v-model="area.areaCode" isvalid="yes"
+                   checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">区域名称<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="区域名称" v-model="area.name" isvalid="yes"
+                   checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">上级区域<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="省级区域" v-model="area.parentName" isvalid="yes"
+                   checkexpession="NotNull" readonly="readonly">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">排序</td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="排序" v-model="area.orderNum">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">层级</td>
+        <td class="formValue">
+            <label class="radio-inline">
+                <input type="radio" name="layer" value="1" v-model="area.layer"/> 省级
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="layer" value="2" v-model="area.layer"/> 地市
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="layer" value="3" v-model="area.layer"/> 区县
+            </label>
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">可用</td>
+        <td class="formValue">
+            <label class="radio-inline">
+                <input type="radio" name="status" value="0" v-model="area.status"/> 禁用
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="status" value="1" v-model="area.status"/> 正常
+            </label>
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle formTitle-top">备注</td>
+        <td class="formValue">
+            <textarea class="form-control" rows="4" placeholder="备注" v-model="area.remark"></textarea>
+        </td>
+    </tr>
+</table>
+<script src="${ctxPath}/static/js/base/area/add.js"></script>
+@}

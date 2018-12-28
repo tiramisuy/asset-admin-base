@@ -1,0 +1,42 @@
+html,body { overflow-x:hidden; font-family:微软雅黑,Helvetica,Arial,sans-serif,'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;}
+.content-header {position: relative;padding: 0 0 3px 8px}
+.content-header>.breadcrumb {position: relative;top: 0;right: 0;float: none;margin-top: 0px;padding-left: 10px;background: #ecf0f5;}
+.main-footer {padding: 7px;margin-left: 230px;color: #444;border-top: 1px solid #eee;background: #fff;}
+[v-cloak] {display: none;}
+.pointer{cursor: pointer;}
+tbody > tr > th {font-weight: normal; }
+.panel .table { margin:0 0; }
+.panel .pagination { margin:0; }
+.panel-default>.panel-heading {background-color: #f5f5f5;}
+.row{margin:0;padding:10px 2px 0px 2px;}
+.dropdown-menu li a{font-size: 14px;}
+.dropdown-menu li:hover{cursor: pointer;}
+.form{width:100%;margin:0px;padding:0px;margin-top:20px;border-collapse:collapse;border-width:3px 1px 1px;table-layout:fixed}
+.form .input-button{border: none;right: 8px;top: 50%;width: 20px;height: 30px;margin-top: -15px;cursor: pointer;overflow: hidden;position: absolute;z-index: 100;}
+.form .formTitle{position:relative;left:0px;text-align:right;white-space:nowrap;font-weight:normal;width:90px;padding-right:10px;}
+.form .formTitle font{color:red;position:absolute;right:0px;}
+.form .formTitle-top {vertical-align:top; padding-top:4px;}
+.form .formValue{position:relative;padding:5px;width:auto;}
+.form .formValue select{padding: 4px;padding-left:4px;}
+.form .formValue .bootstrap-duallistbox-container{margin-top:-32px;margin-left: -12px;}
+.form .formValue .bootstrap-duallistbox-container .btn-box{margin: 78px 16px 0px 16px;}
+.form-control{color:#000;border-radius:0px;box-shadow:none;padding-top:6px;padding-right:0px;padding-left:5px;resize: none;}
+.form-control:focus{border-color:#337ab7;box-shadow:none;}
+.form textarea.form-control{padding-top: 5px;}
+.has-error .form-control:focus{border-color:#B94A48;}
+.panel{margin-bottom:0px;}
+.panel-body{padding:0px;}
+.no-padding{padding:0px}
+table .fa-toggle-on{color: #449d44;font-size: 14pt;vertical-align: middle;margin-top: -1px;}
+table .fa-toggle-off{color: #aaa;font-size: 14pt;vertical-align: middle;margin-top: -1px;}
+/* * css: 表格操作列 * ----------*/
+.bootstrap-table a i{color: #3c8dbc;display: inline-block;width: 15px;float: none;position: static;text-align: center;opacity: .85;-webkit-transition: all .12s;-o-transition: all .12s;transition: all .12s;margin: 0 0 2px 3px;vertical-align: middle;cursor: pointer;font-size: 14px;}
+.bootstrap-table a i:hover{transform: scale(1.2);opacity: 1;position: static;margin: 0 0 2px 3px}
+.bootstrap-table a i.fa-pencil{color: #69aa46;}/**编辑**/
+.bootstrap-table a i.fa-check-circle{color: #69aa46;}/**启用**/
+.bootstrap-table a i.fa-ban{color: #dd5a43;}/**禁用**/
+.bootstrap-table a i.fa-trash-o{color: #dd5a43;}/**删除**/
+.bootstrap-table a i.fa-stop{color: #efac56;}/**停止**/
+.bootstrap-table td .btn-group{vertical-align: top}
+.bootstrap-table .more-opt{top:-10px;padding: 5px 0 0 5px;background: #fff;border: 1px solid #ddd;border-radius: 4px;box-shadow: 2px 2px 15px #ccc;position: absolute;z-index: 1;animation-duration: .05s;animation-name: fadeInLeft;}
+.bootstrap-table .more-opt button{margin: 0 4px 4px 0;font-size: 13px;}

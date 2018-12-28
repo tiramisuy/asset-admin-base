@@ -1,0 +1,47 @@
+@layout("layout.html", {title: "欢迎页"}){
+<div class="panel panel-default">
+    <div class="panel-heading">基本信息</div>
+    <div>
+        <h3>&nbsp;&nbsp;&nbsp;项目介绍</h3>
+        <ul>
+            <li>一个轻量级的Java快速开发平台(框架)，能快速开发项目并交付</li>
+            <li>友好的代码结构及注释，便于阅读及二次开发</li>
+            <li>命名规范和工程分层规约参考阿里巴巴JAVA开发规范</li>
+            <li>前后端开发封装，快速实现CRUD开发</li>
+            <li>完善的XSS防范及脚本过滤，彻底杜绝XSS攻击</li>
+            <li>基于角色的权限管理，支持操作权限和数据权限</li>
+            <li>基于Maven模块化开发，可快速实现个性化业务模块</li>
+            <li>支持单页iframe嵌套和多页tab标签框架</li>
+            <li>支持jar包部署和war包部署</li>
+        </ul>
+
+        <h3>&nbsp;&nbsp;&nbsp;相关项目</h3>
+        <ul>
+            <li>代码生成器：<a href="http://git.oschina.net/zhocuhenglin/dp-generator" target="_blank">http://git.oschina.net/zhocuhenglin/dp-generator</a></li>
+            <li>数据权限版：<a href="http://git.oschina.net/zhocuhenglin/dp-pro" target="_blank">http://git.oschina.net/zhocuhenglin/dp-pro</a></li>
+        </ul>
+
+        <h3>&nbsp;&nbsp;&nbsp;获取帮助</h3>
+        <ul>
+            <li>仓库地址：<a href="http://git.oschina.net/zhocuhenglin/dp-security/" target="_blank">http://git.oschina.net/zhocuhenglin/dp-security</a></li>
+            <li>项目文档：<a href="http://dp-dev.mydoc.io/" target="_blank">http://dp-dev.mydoc.io/</a></li>
+            <li>关于作者：<a href="http://www.chenlintech.com/" target="_blank">http://www.chenlintech.com/</a></li>
+            <li>兴趣交流群: 553461392</li>
+            <li>如需关注项目最新动态，请Watch、Star项目，同时也是对项目最好的支持</li>
+        </ul>
+
+        <h3>&nbsp;&nbsp;&nbsp;开发组件</h3>
+        <ul>
+            <li><a href="/base/component/select2.html" target="_blank">select2（下拉选择组件）</a></li>
+            <li><a href="/base/component/switchery.html" target="_blank">switchery（开关组件）</a></li>
+            <li><a href="/base/component/editor.html" target="_blank">editor（富文本编辑器）</a></li>
+        </ul>
+
+    </div>
+</div>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#dpLTE'
+    });
+</script>
+@}

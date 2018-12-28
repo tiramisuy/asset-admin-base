@@ -1,0 +1,68 @@
+package ${package}.modules.${module}.entity;
+
+import java.io.Serializable;
+import java.util.Date;
+
+<% if(has(hasDecimal) && hasDecimal == true) { %>
+import java.math.BigDecimal;
+<% } %>
+
+
+/**
+ * ${comments}
+ * @author ${author}<${email}>
+ */
+public class ${className}Entity implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+<% for (column in columns!) { %>
+	/**
+	 * ${column.columnComment}
+	 */
+	private ${column.fieldType} ${column.fieldName};
+	
+<% } %>
+    /**
+     * ${className}Entity constructor
+     */
+	public ${className}Entity() {
+		super();
+	}
+
+<% for (column in columns) { %>
+    /**
+     * setter for ${column.fieldName}
+     * @param ${column.fieldName}
+     */
+	public void set${column.methodName}(${column.fieldType} ${column.fieldName}) {
+		this.${column.fieldName} = ${column.fieldName};
+	}
+
+    /**
+     * getter for ${column.fieldName}
+     */
+	public ${column.fieldType} get${column.methodName}() {
+		return ${column.fieldName};
+	}
+
+<% } %>
+    /**
+     * ${className}Entity.toString()
+     */
+    @Override
+    public String toString() {
+        return "${className}Entity{" +
+               <% for (column in columns) { %>
+               <% if (columnLP.first) { %>
+               "${column.fieldName}='" + ${column.fieldName} + '\'' +
+               <% } else { %>
+               ", ${column.fieldName}='" + ${column.fieldName} + '\'' +
+               <% } %>
+               <% if (columnLP.last) { %>
+               '}';
+               <% } %>
+               <% } %>
+    }
+
+}

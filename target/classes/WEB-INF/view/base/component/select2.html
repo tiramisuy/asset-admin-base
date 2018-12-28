@@ -1,0 +1,208 @@
+@layout("../../system/layout.html", {title: ""}){
+<div class="panel panel-default" style="padding-bottom: 10px;margin-top:10px;">
+    <div class="panel-heading">select2示例</div>
+    <div>
+        <h3>&nbsp;&nbsp;&nbsp;官方文档</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <a href="https://github.com/select2/select2" target="_blank">https://github.com/select2/select2</a>
+            </div>
+        </div>
+        <h3>&nbsp;&nbsp;&nbsp;系统参数选择</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <select class="userState form-control"></select>
+            </div>
+            <div class="col-md-4">
+                <select class="clientType form-control"></select>
+            </div>
+        </div>
+        <h3>&nbsp;&nbsp;&nbsp;带默认值&去除搜索框初始化选择</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <select class="userStateWithDefault form-control"></select>
+            </div>
+        </div>
+        <h3>&nbsp;&nbsp;&nbsp;省市区级联选择</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <select class="province form-control"></select>
+            </div>
+            <div class="col-md-4">
+                <select class="city form-control"></select>
+            </div>
+            <div class="col-md-4">
+                <select class="district form-control"></select>
+            </div>
+        </div>
+        <h3>&nbsp;&nbsp;&nbsp;带初始化默认值的省市区级联选择</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <select class="provinceWithValue form-control"></select>
+            </div>
+            <div class="col-md-4">
+                <select class="cityWithValue form-control"></select>
+            </div>
+            <div class="col-md-4">
+                <select class="districtWithValue form-control"></select>
+            </div>
+        </div>
+        <h3>&nbsp;&nbsp;&nbsp;多选&初始化</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <select class="provinceMuti form-control" multiple></select>
+            </div>
+            <div class="col-md-4">
+                <select class="cityMuti form-control" multiple></select>
+            </div>
+        </div>
+        <h3>&nbsp;&nbsp;&nbsp;动态检索</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <select class="dynamicSearch form-control"></select>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    new Vue({
+        el: '#dpLTE'
+    });
+
+    <!-- 系统参数下拉框 -->
+    // 初始化系统参数
+    $('.userState').selectBindEx({
+        url: '../../sys/macro/value?value=userStatus',
+        placeholder: '请选择用户状态',
+        value: 'value',
+        text: 'name',
+    });
+
+    $('.clientType').selectBindEx({
+        url: '../../sys/macro/value?value=clientManage',
+        placeholder: '请选择客户关系',
+        value: 'value',
+        text: 'name',
+        search: false
+    });
+
+    $('.userStateWithDefault').selectBindEx({
+        url: '../../sys/macro/value?value=userStatus',
+        placeholder: '请选择用户状态',
+        value: 'value',
+        text: 'name',
+        selected: '0',
+        search: false
+    });
+
+    <!-- 省市区级联选择 -->
+    // 初始化省份选择，及级联函数
+    $('.province').selectBindEx({
+        url: '../../sys/area/select?areaCode=0',
+        placeholder: '请选择省份',
+        value: 'areaCode',
+        text: 'name',
+        change: function (data) {
+            $('.city').selectBindEx({
+                url: '../../sys/area/select?areaCode=' + data,
+                placeholder: '请选择地市',
+                value: 'areaCode',
+                text: 'name',
+                change: function (data) {
+                    $('.district').selectBindEx({
+                        url: '../../sys/area/select?areaCode=' + data,
+                        placeholder: '请选择区县',
+                        value: 'areaCode',
+                        text: 'name'
+                    });
+                }
+            });
+            // 选择省份后，清空地址选择
+            $('.city').val(null).trigger('change');
+        }
+    });
+    // 初始化地市选择
+    $('.city').selectInitEx('请选择地市');
+    // 初始化区县选择
+    $('.district').selectInitEx('请选择区县');
+
+    <!-- 带默认值的省市区级联选择,江苏省320000-南京市320100-玄武区320102 -->
+    $('.provinceWithValue').selectBindEx({
+        url: '../../sys/area/select?areaCode=0',
+        async: false,
+        placeholder: '请选择省份',
+        value: 'areaCode',
+        text: 'name',
+        change: function (data) {
+            $('.cityWithValue').selectBindEx({
+                url: '../../sys/area/select?areaCode=' + data,
+                async: false,
+                placeholder: '请选择地市',
+                value: 'areaCode',
+                text: 'name',
+                change: function (data) {
+                    $('.districtWithValue').selectBindEx({
+                        url: '../../sys/area/select?areaCode=' + data,
+                        async: false,
+                        placeholder: '请选择区县',
+                        value: 'areaCode',
+                        text: 'name'
+                    });
+                }
+            });
+            $('.cityWithValue').val(null).trigger('change');
+        }
+    });
+    $('.provinceWithValue').val('320000').trigger('change');
+    $('.cityWithValue').val('320100').trigger('change');
+    $('.districtWithValue').val('320102');
+
+    <!-- 多选 -->
+    $('.provinceMuti').selectBindEx({
+        url: '../../sys/area/select?areaCode=0',
+        placeholder: '请选择省份',
+        value: 'areaCode',
+        text: 'name',
+        selected: ['320000', '120000', '110000']
+    });
+
+    $('.cityMuti').selectBindEx({
+        url: '../../sys/area/select?areaCode=320000',
+        async: false,
+        placeholder: '请选择地市',
+        value: 'areaCode',
+        text: 'name'
+    });
+    $('.cityMuti').val(['320100', '320400', '320700']);
+
+    <!-- 动态检索 -->
+    $('.dynamicSearch').select2({
+        theme: "bootstrap",
+        language: "zh-CN",
+        width: 'off',
+        placeholder: '请输入行政编码',
+        ajax: {
+            url: '../../sys/area/select',
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    areaCode: params.term
+                }
+            },
+            processResults: function (r) {
+                var itemList = [];
+                $.each(r, function (idx, item) {
+                    itemList.push({id: item.areaCode, text: item.name});
+                });
+                return {
+                    results: itemList
+                }
+            },
+            cache: false
+        },
+        minimumInputLength: 1
+    });
+
+</script>
+@}

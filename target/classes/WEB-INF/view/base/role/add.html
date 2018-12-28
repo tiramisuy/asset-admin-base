@@ -1,0 +1,32 @@
+@layout("../../system/layout.html", {title: "新增-角色管理"}){
+<table class="form" id="form">
+    <tr>
+        <td class="formTitle">角色名称<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="角色名称" v-model="role.roleName" isvalid="yes"
+                   checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">角色标识<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="多个用逗号分隔，如：admin,guest" v-model="role.roleSign"
+                   isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">所属机构<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control pointer" placeholder="所属机构" v-model="role.orgName" \@click="orgTree"
+                   isvalid="yes" checkexpession="NotNull" readonly="readonly">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle formTitle-top">备注</td>
+        <td class="formValue">
+            <textarea class="form-control" rows="4" placeholder="备注" v-model="role.remark"></textarea>
+        </td>
+    </tr>
+</table>
+<script src="${ctxPath}/static/js/base/role/add.js"></script>
+@}

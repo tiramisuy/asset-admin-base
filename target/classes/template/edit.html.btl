@@ -1,0 +1,15 @@
+@layout("../../system/layout.html", {title: "${comments}"}){
+<table class="form" id="form">
+<% for(column in columns!) { %>
+    <% if(column.columnName != pk.columnName) { %>
+    <tr>
+        <td class="formTitle">${column.columnComment}<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="${column.columnComment}" v-model="${objName}.${column.fieldName}" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <% } %>
+<% } %>
+</table>
+<script src="\${ctxPath}/static/js/${viewPath}/edit.js"></script>
+@}

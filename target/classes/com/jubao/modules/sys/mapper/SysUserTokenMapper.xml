@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jubao.modules.sys.dao.SysUserTokenMapper">
+	
+	<select id="getByToken" resultType="com.jubao.modules.sys.entity.SysUserTokenEntity">
+		SELECT
+			user_id,
+			token,
+			gmt_expire,
+			gmt_modified
+		FROM
+			sys_user_token
+		WHERE
+			token = #{value}
+	</select>
+	
+	<select id="getByUserId" resultType="com.jubao.modules.sys.entity.SysUserTokenEntity">
+		SELECT
+			user_id,
+			token,
+			gmt_expire,
+			gmt_modified
+		FROM
+			sys_user_token
+		WHERE
+			user_id = #{value}
+	</select>
+	
+	<insert id="save">
+		INSERT INTO sys_user_token (
+			user_id,
+			token,
+			gmt_expire,
+			gmt_modified
+		)
+		VALUES (
+			#{userId},
+			#{token}, 
+			#{gmtExpire}, 
+			#{gmtModified}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE sys_user_token
+	 	<set> 
+			<if test="token != null">token = #{token}, </if>
+			<if test="gmtExpire != null">gmt_expire = #{gmtExpire}, </if>
+			<if test="gmtModified != null">gmt_modified = #{gmtModified}, </if>
+		</set>
+		WHERE
+			user_id = #{userId}
+	</update>
+
+</mapper>

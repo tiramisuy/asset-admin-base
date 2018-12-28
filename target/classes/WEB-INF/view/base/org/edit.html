@@ -1,0 +1,43 @@
+@layout("../../system/layout.html", {title: "编辑-机构管理"}){
+<table class="form" id="form">
+    <tr>
+        <td class="formTitle">机构名称<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="机构名称" v-model="org.name" isvalid="yes"
+                   checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">机构编码<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="机构编码" v-model="org.code" isvalid="yes"
+                   checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">上级机构<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control pointer" placeholder="一级机构" v-model="org.parentName" \@click="orgTree"
+                   readonly="readonly">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">排序</td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="排序" v-model="org.orderNum">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">可用</td>
+        <td class="formValue">
+            <label class="radio-inline">
+                <input type="radio" name="status" value="0" v-model="org.status"/> 禁用
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="status" value="1" v-model="org.status"/> 正常
+            </label>
+        </td>
+    </tr>
+</table>
+<script src="${ctxPath}/static/js/base/org/edit.js"></script>
+@}

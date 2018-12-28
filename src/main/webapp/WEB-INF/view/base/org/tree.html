@@ -1,0 +1,43 @@
+@layout("../../system/layout.html", {title: "上级机构"}){
+<ul id="orgTree" class="ztree"></ul>
+<script type="text/javascript">
+    var setting = {
+        data: {
+            simpleData: {
+                enable: true,
+                idKey: "orgId",
+                pIdKey: "parentId",
+                rootPId: -1
+            },
+            key: {
+                url: "nourl"
+            }
+        }
+    };
+    var ztree;
+
+    var vm = new Vue({
+        el: '#dpLTE',
+        methods: {
+            getMenu: function (menuId) {
+                $.get('../../sys/org/select', function (r) {
+                    ztree = $.fn.zTree
+                        .init($("#orgTree"), setting, r);
+                    var node = ztree.getNodeByParam("orgId", top.layerForm.vm.org.parentId);
+                    ztree.selectNode(node);
+                    top.layerForm.vm.org.parentName = node.name;
+                })
+            },
+            acceptClick: function () {
+                var node = ztree.getSelectedNodes();
+                top.layerForm.vm.org.parentId = node[0].orgId;
+                top.layerForm.vm.org.parentName = node[0].name;
+                dialogClose();
+            }
+        },
+        created: function () {
+            this.getMenu();
+        }
+    })
+</script>
+@}

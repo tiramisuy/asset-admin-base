@@ -1,0 +1,20 @@
+@layout("../../system/layout.html", {title: "组织机构"}){
+<div class="row">
+    <div class="col-md-6">
+        <div class="btn-toolbar">
+            <div class="btn-group">
+                <a v-if="hasPermission('sys:org:list')" class="btn btn-default" onclick="reload();"><i
+                        class="fa fa-refresh"></i>&nbsp;刷新</a>
+                <a v-if="hasPermission('sys:org:save')" class="btn btn-default" \@click="save"><i
+                        class="fa fa-plus"></i>&nbsp;新增</a>
+                <a v-if="hasPermission('sys:org:remove')" class="btn btn-default" \@click="remove(true)"><i
+                        class="fa fa-trash-o"></i>&nbsp;删除</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <table id="dataGrid"></table>
+</div>
+<script src="${ctxPath}/static/js/base/org/list.js"></script>
+@}

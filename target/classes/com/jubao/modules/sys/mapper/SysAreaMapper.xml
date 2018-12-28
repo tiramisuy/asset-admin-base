@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jubao.modules.sys.dao.SysAreaMapper">
+	
+	<select id="countAreaChildren" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			sys_area
+		WHERE
+			parent_code = (
+				SELECT
+					p.area_code
+				FROM
+					sys_area p
+				WHERE
+					p.area_id = #{value}
+			)
+	</select>
+	
+	<select id="listAreaByParentCode" resultType="com.jubao.modules.sys.entity.SysAreaEntity">
+		SELECT
+			a.area_id,
+			a.area_code,
+			a.parent_code,
+			a.name,
+			a.layer,
+			a.order_num,
+			a.status,
+		<if test="name == null">
+			(
+				SELECT
+					count(*)
+				FROM
+					sys_area p
+				WHERE
+					p.parent_code = a.area_code
+			) AS size,
+		</if>
+			a.remark
+		FROM
+			sys_area a
+		<where>
+			<if test="parentCode != null">
+				AND a.parent_code = #{parentCode} 
+			</if>
+			<if test="name != null and name.trim() != ''">
+				AND a.name LIKE concat('%',#{name},'%') 
+			</if>
+		</where>
+		ORDER BY
+			a.order_num ASC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO sys_area (
+			area_code,
+			parent_code,
+			name,
+			status,
+			layer,
+			order_num,
+			remark,
+			gmt_create
+		)
+		VALUES (
+			#{areaCode},
+			#{parentCode}, 
+			#{name}, 
+			#{status},
+			#{layer},
+			#{orderNum}, 
+			#{remark}, 
+			now()
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="com.jubao.modules.sys.entity.SysAreaEntity">
+		SELECT
+			a.area_id,
+			a.area_code,
+			a.name,
+			a.layer,
+			a.status,
+			a.remark,
+			a.order_num,
+			a.parent_code,
+			(
+				SELECT
+					p. NAME
+				FROM
+					sys_area p
+				WHERE
+					p.area_code = a.parent_code
+			) AS parentName
+		FROM
+			sys_area a
+		WHERE
+			a.area_id = #{areaId}
+	</select>
+	
+	<update id="update">
+		UPDATE sys_area
+	 	<set> 
+			<if test="areaCode != null">area_code = #{areaCode}, </if>
+			<if test="name != null">name = #{name}, </if>
+			<if test="layer != null">layer = #{layer}, </if>
+			<if test="status != null">status = #{status}, </if>
+			<if test="orderNum != null">order_num = #{orderNum}, </if>
+			<if test="remark != null">remark = #{remark}, </if>
+			gmt_modified = NOW()
+		</set>
+		WHERE
+			area_id = #{areaId}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			sys_area
+		WHERE
+			area_id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

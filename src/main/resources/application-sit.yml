@@ -1,0 +1,50 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    druid:
+      master-data-source:  #主库数据源
+        url: jdbc:mysql://192.168.10.254:3306/loan_asset?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: jubaodai
+      slave-data-source:  #从库数据源
+        url: jdbc:mysql://192.168.10.254:3306/loan_asset?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: jubaodai
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        #login-username: admin
+        #login-password: admin
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+  reids:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    database: 0
+    timeout: 1000
+    jedis:
+      pool:
+        max-active: 6000
+        max-wait: 1000
+        max-idle: 400
+

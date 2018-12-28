@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>资产管理系统</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+<link rel="stylesheet" href="${ctxPath}/static/css/login.min.css"/>
+</head>
+<body>
+	<div class="login">
+		<div class="message">资产管理系统</div>
+		<div id="darkbannerwrap"></div>
+		<form action="${ctxPath}/login" method="post" id="loginForm">
+            <h4 class="tip">${errorMsg!}</h4>
+			<input placeholder="用户名" id="username" name="username" type="text" class="loginInput">
+			<hr class="hr15">
+			<input placeholder="密码" id="password" name="password" type="password" class="loginInput">
+			<hr class="hr15">
+			@if(kaptchaEnable){
+			<input placeholder="验证码" id="code" name="code" type="text" class="codeInput loginInput">
+			<img src="captcha.jpg" alt="验证码" id="imgCode" class="codeImg" title="单击图片刷新！">
+			<hr class="hr15">
+			@}
+			<input value="登录" style="width: 100%;" type="button" id="loginBtn">
+			<hr class="hr20">
+            <p class="copyright">
+                版权所有 © 2018 速盾科技 - Powered By SST
+            </p>
+		</form>
+	</div>
+	<script src="${ctxPath}/static/libs/jquery.min.js"></script>
+	<script type="text/javascript">
+
+        $(function(){
+            if (self != top) {
+                top.location.href = self.location.href;
+            }
+            $('#loginBtn').on('click', login);
+
+            @if(kaptchaEnable){
+            $('#imgCode').on('click', refreshCode);
+            @}
+
+            $(document).keyup(function (event) {
+				if (event.keyCode === 13) {
+				    $('#loginBtn').trigger('click');
+				}
+            })
+
+        });
+
+        @if(kaptchaEnable){
+        function refreshCode() {
+            $('#imgCode').attr('src', "captcha.jpg?t=" + $.now());
+		}
+		@}
+
+        function login() {
+            var username = $('#username').val();
+            if (username === '') {
+                $('.tip').text('用户名不能为空');
+                return false;
+            }
+            var password = $('#password').val();
+            if (password === '') {
+                $('.tip').text('密码不能为空');
+                return false;
+            }
+            @if(kaptchaEnable){
+			var code = $('#code').val();
+			if (code === '') {
+				$('.tip').text('验证码不能为空');
+				return false;
+			}
+            @}
+            $('#loginForm').submit();
+        }
+	</script>
+</body>
+</html>

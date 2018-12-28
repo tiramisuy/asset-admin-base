@@ -1,0 +1,121 @@
+{
+  "groups": [
+    {
+      "name": "beetl",
+      "type": "com.jubao.common.support.properties.BeetlProperties",
+      "sourceType": "com.jubao.common.support.properties.BeetlProperties"
+    },
+    {
+      "name": "global",
+      "type": "com.jubao.common.support.properties.GlobalProperties",
+      "sourceType": "com.jubao.common.support.properties.GlobalProperties"
+    },
+    {
+      "name": "jwt",
+      "type": "com.jubao.common.support.properties.JwtProperties",
+      "sourceType": "com.jubao.common.support.properties.JwtProperties"
+    },
+    {
+      "name": "spring.datasource.druid.master-data-source",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.jubao.common.support.orm.db.DynamicDataSourceConfig",
+      "sourceMethod": "defaultDataSource()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "beetl.delimiter-statement-end",
+      "type": "java.lang.String",
+      "description": "定界结束符号",
+      "sourceType": "com.jubao.common.support.properties.BeetlProperties"
+    },
+    {
+      "name": "beetl.delimiter-statement-start",
+      "type": "java.lang.String",
+      "description": "定界开始符号",
+      "sourceType": "com.jubao.common.support.properties.BeetlProperties"
+    },
+    {
+      "name": "beetl.prefix",
+      "type": "java.lang.String",
+      "description": "视图解析器的路径前缀",
+      "sourceType": "com.jubao.common.support.properties.BeetlProperties"
+    },
+    {
+      "name": "beetl.properties",
+      "type": "java.util.Properties",
+      "sourceType": "com.jubao.common.support.properties.BeetlProperties"
+    },
+    {
+      "name": "beetl.resource-auto-check",
+      "type": "java.lang.String",
+      "description": "是否检测文件变化，开发使用true合适，生产使用false",
+      "sourceType": "com.jubao.common.support.properties.BeetlProperties"
+    },
+    {
+      "name": "beetl.resource-tag-root",
+      "type": "java.lang.String",
+      "description": "自定义标签文件root目录",
+      "sourceType": "com.jubao.common.support.properties.BeetlProperties"
+    },
+    {
+      "name": "beetl.resource-tag-suffix",
+      "type": "java.lang.String",
+      "description": "自定义标签文件后缀",
+      "sourceType": "com.jubao.common.support.properties.BeetlProperties"
+    },
+    {
+      "name": "global.beetl-global-vars",
+      "type": "java.util.Map<java.lang.String,java.lang.Object>",
+      "sourceType": "com.jubao.common.support.properties.GlobalProperties"
+    },
+    {
+      "name": "global.kaptcha-enable",
+      "type": "java.lang.Boolean",
+      "description": "是否开启验证码",
+      "sourceType": "com.jubao.common.support.properties.GlobalProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "global.redis-session-dao",
+      "type": "java.lang.Boolean",
+      "description": "是否开启redis会话管理器",
+      "sourceType": "com.jubao.common.support.properties.GlobalProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "global.upload-location",
+      "type": "java.lang.String",
+      "description": "文件上传目录",
+      "sourceType": "com.jubao.common.support.properties.GlobalProperties"
+    },
+    {
+      "name": "global.upload-mapping",
+      "type": "java.lang.String",
+      "description": "文件上传目录访问路径",
+      "sourceType": "com.jubao.common.support.properties.GlobalProperties"
+    },
+    {
+      "name": "jwt.expiration",
+      "type": "java.lang.Long",
+      "description": "过期时间：604800 s（单位：秒）",
+      "sourceType": "com.jubao.common.support.properties.JwtProperties",
+      "defaultValue": 604800
+    },
+    {
+      "name": "jwt.md5-key",
+      "type": "java.lang.String",
+      "description": "md5加密混淆key",
+      "sourceType": "com.jubao.common.support.properties.JwtProperties",
+      "defaultValue": "randomKey"
+    },
+    {
+      "name": "jwt.secret",
+      "type": "java.lang.String",
+      "description": "jwt密钥",
+      "sourceType": "com.jubao.common.support.properties.JwtProperties",
+      "defaultValue": "dp"
+    }
+  ],
+  "hints": []
+}
